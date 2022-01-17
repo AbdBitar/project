@@ -34,6 +34,10 @@ $result= mysqli_query($connect,$selectorder);
        height: 35px;
        width: 200px;
      }
+     p {
+      margin-left: 700px;
+    }
+    
 
     </style>
 </head>
@@ -45,10 +49,10 @@ $result= mysqli_query($connect,$selectorder);
                 <span><i class="bi bi-table me-2"></i></span> <h3 id="orderlabel">Order Table</h3> 
               </div>
               <div class="card-body">
-              <input id="search" type="search" placeholder="Search..">
-              <button type="button" class="btn btn-primary"> <i class="fas fa-search"></i>
-               </button>
-                
+                <form  method="get">
+              <input name="search" id="search" type="search" placeholder="Search.." value="<?php if (isset($_GET['search'])){ echo $_GET['search']; }?>">
+              <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i>  </button>
+                </form>
                 <div class="table-responsive">
                 
                   <table border="2" id="example" class="table table-striped data-table"  style="width: 100%"   >
@@ -65,6 +69,41 @@ $result= mysqli_query($connect,$selectorder);
                         <th>Payment Method</th>
                         <th id="tbody">Action</th>
                       </tr>
+                      <tbody>
+                      <?php
+                      if (isset($_GET['search'])){
+
+                        $filter=$_GET['search'];
+                        $filterselect="SELECT * FROM order_yalla WHERE CONCAT (id,email,phonenumber,streetadd,postcode,company,daterecived,liters,payment) LIKE '%$filter%'  ";
+                        $resu=mysqli_query($connect,$filterselect);
+                        
+                        if (mysqli_num_rows($resu)>0){
+                      
+                          foreach($resu as $items){ ?>
+                          <td><?php echo $items['id']; ?> </td>
+                          <td><?php echo $items['email']; ?> </td>
+                          <td><?php echo $items['phonenumber']; ?></td>
+                          <td><?php echo $items['streetadd']; ?></td>
+                          <td><?php echo $items['postcode']; ?></td>
+                          <td><?php echo $items['company']; ?></td>
+                          <td> <?php echo $items['daterecived']; ?></td>
+                          <td> <?php echo $items['liters']; ?></td>
+                          <td> <?php echo $items['payment']; ?></td>
+                      <?php 
+                      
+                          }
+                      
+                        
+                        }
+                        else{
+                          echo "<p>Data Not Found !</p>";
+                      
+                        }
+                      
+                      } 
+                      ?>
+
+                      </tbody>
                      <?php
                      while ($rows=mysqli_fetch_assoc($result)){?>
 
@@ -80,8 +119,12 @@ $result= mysqli_query($connect,$selectorder);
                         <td><?php echo $rows['daterecived'];?> </td>
                         <td><?php echo $rows['liters'];?> </td>
                         <td><?php echo $rows['payment'];?> </td>
-                        <td><a class="btn btn-success btn-sm " id="con" href="">  Confirme</a></td>
-                        <td><a class="btn btn-danger btn-sm " href="del.php?id=<?=$rows['id'];?>">Delete</a></td>
+                        <?php if($rows['confirm']): ?>
+                         <td><a href="confirmed.php?id=<?=$rows['id'];?>" class="btn btn-success btn-sm ">Confirmed</a> </td>
+                         <?php else: ?>
+                          <td><a href="confirm.php?id=<?=$rows['id'];?>" class="btn btn-warning btn-sm ">Confirme</a> </td>
+                          <?php endif; ?>
+                        <td><a class="btn btn-danger btn-sm " href="delor.php?id=<?=$rows['id'];?>">Remove</a></td>
 
                       </tr>
                       </tbody>

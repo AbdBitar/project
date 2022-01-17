@@ -4,7 +4,7 @@ session_start();
 $connect = mysqli_connect("localhost","root","", "yalla_diesel");
 
 
-$selectadmin= "SELECT * FROM admin";
+$selectadmin= "SELECT * FROM company_admin";
 
 $resultadd= mysqli_query($connect,$selectadmin);
 
@@ -18,6 +18,11 @@ $admins=mysqli_fetch_assoc($resultadd);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
   
   <title>Document</title>
   <style>
@@ -55,48 +60,19 @@ $admins=mysqli_fetch_assoc($resultadd);
         </button>
         <a
           class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" 
-          href="index.php" ><h4>Yalla Diesel</h4></a>
+          href="#" ><h4>Yalla Diesel</h4></a>
 
           <a
           class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" id="dsh"
           href="order.php" ><i class="bi bi-table"></i> Orders </a>
-          <a
-          class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" id="tab"
-          href="individual.php" ><i class="bi bi-layout-split"></i>  Individual tables</a>
-          <a
-          class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" id="tab"
-          href="company.php" ><i class="bi bi-layout-split"></i> Company tables</a>
+         
           <a
           class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" id="ord"
-          href="addadmin.php" ><i class="fas fa-user-plus mr-2"></i> Add Admin</a>
+          href="addadmin.php" ><i class="fas fa-user-plus mr-2"></i> Add order</a>
          
 
        
-        <!-- <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#topNavBar"
-          aria-controls="topNavBar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="topNavBar"> -->
-          <!-- <form class="d-flex ms-auto my-3 my-lg-0">
-            <div class="input-group">
-              <input
-                class="form-control"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-primary" type="submit">
-                <i class="bi bi-search"></i>
-              </button>
-            </div>
-          </form> -->
+       
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a  class="nav-link dropdown-toggle ms-2"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
@@ -130,5 +106,11 @@ $admins=mysqli_fetch_assoc($resultadd);
         </div>
 
     <!-- End top navigation bar -->
+    <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+  <script src="./js/jquery-3.5.1.js"></script>
+  <script src="./js/jquery.dataTables.min.js"></script>
+  <script src="./js/dataTables.bootstrap5.min.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>

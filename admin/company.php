@@ -46,6 +46,10 @@ $resultcom= mysqli_query($connect,$selectcompany);
        height: 35px;
        width: 200px;
      }
+     p {
+      margin-left: 700px;
+    }
+   
 
     
     </style>
@@ -57,46 +61,89 @@ $resultcom= mysqli_query($connect,$selectcompany);
               <div class="card-header">
                 <span><i class="bi bi-table me-2"></i></span> <h3 id="orderlabel">Company Users</h3> 
               </div>
-              <div class="card-body">
-              <input id="search" type="search" placeholder="Search..">
-              <button type="button" class="btn btn-primary"> <i class="fas fa-search"></i>
-               </button>
+
+              <form  method="get">
+              <input name="search" id="search" type="search" placeholder="Search.." value="<?php if (isset($_GET['search'])){ echo $_GET['search']; }?>">
+              <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i>  </button>
+                </form>
+
                 
                 <div class="table-responsive">
                 
                   <table border="2" id="example" class="table table-striped data-table"  style="width: 100%"   >
                     <thead>
                       <tr>
+                      <th>Id</th>
                         <th>Commercial Registration Number</th>
+                        <th>Name</th>
                         <th>City</th>
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Action</th>
+                        
                       </tr>
+                      <tbody>           
+           <?php
+          if (isset($_GET['search'])){
+
+            $filter=$_GET['search'];
+            $filterselect="SELECT * FROM users_company WHERE CONCAT (id,commercialregistrationnumber,name,city,phonenumber,email) LIKE '%$filter%'  ";
+            $resu=mysqli_query($connect,$filterselect);
+            
+            if (mysqli_num_rows($resu)>0){
+          
+              foreach($resu as $items){ ?>
+              <td><?php echo $items['id']; ?> </td>
+              <td><?php echo $items['commercialregistrationnumber']; ?> </td>
+              <td><?php echo $items['name']; ?></td>
+              <td> <?php echo $items['city']; ?></td>
+              <td> <?php echo $items['phonenumber']; ?></td>
+              <td><?php echo $items['email']; ?></td>
+            
+                    <?php 
+                    
+                        }
+                    
+                      
+                      }
+                      else{
+                        echo "<p>Data Not Found !</p>";
+                    
+                      }
+                    
+                    } 
+                    ?>
+                  </tbody>
                      <?php
                      while ($rows=mysqli_fetch_assoc($resultcom)){?>
 
                     </thead>
+                    
+                    
                     <tbody>
                       <tr>
+                      <td><?php echo $rows['id'];?> </td>
                         <td><?php echo $rows['commercialregistrationnumber'];?> </td>
+                        <td><?php echo $rows['name'];?> </td>
                         <td><?php echo $rows['city'];?> </td>
                         <td><?php echo $rows['phonenumber'];?> </td>
                         <td><?php echo $rows['email'];?> </td>
-                        <td><a href=""  class="btn btn-warning btn-sm ">View</a>
-                        <a href="" class="btn btn-primary btn-sm ">Edit</a> 
-                        <a href="" class="btn btn-danger btn-sm ">Remove</a> </td>
+                        <td><a href="viewcom.php?id=<?= $rows['id'];?>"  class="btn btn-warning btn-sm ">View</a>
+                        <a href="viewcom.php?id=<?=$rows['id'];?>" class="btn btn-primary btn-sm ">Edit</a> 
+                        <a href="delcom.php?id=<?=$rows['id'];?>" class="btn btn-danger btn-sm ">Remove</a> </td>
 
                       </tr>
                       </tbody>
                     <?php
                      }
                      ?>
-
+                     
+                     
                    
                      
                     <tfoot>
                       <tr>
+                      <th>Id</th>
                         <th>Commercial Registration Number</th>
                         <th>City</th>
                         <th>Phone Number</th>

@@ -17,10 +17,11 @@ include ('./config/navbar.php')
     <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <title>Document</title>
+    <title>Add Admin</title>
     <style>
         #add{
-            margin-top: 90px;
+            margin-top: 80px;
+            font-weight: bold;
         
         }
         p{
@@ -66,21 +67,22 @@ else{
             <form class="" action="" method="post">
                
                 <div class="form-group">
-                  <label for="username"> username</label>
-                  <input type="text" name="username"  class="form-control">
+                  <label for="username"> Username</label>
+                  <input type="text" name="username"  class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="email">Email address</label>
-                  <input type="email" name="email"  class="form-control">
+                  <input type="email" name="email"  class="form-control" required>
                 </div>
                 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" name="password" class="form-control">
+                  <input type="password" name="password" class="form-control" required>
                 </div> <br> <br>
                 
                 <div class="form-group">
                   <button type="submit" name="addUser" class="btn btn-success">Register</button>
+                 <a href="index.php"><button type="button"  class="btn btn-secondary">Back</button></a> 
                 </div>
 
 

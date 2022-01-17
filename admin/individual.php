@@ -38,6 +38,10 @@ $resultind= mysqli_query($connect,$selectcustomer);
        height: 35px;
        width: 200px;
      }
+     p {
+      margin-left: 700px;
+    }
+    
 
     </style>
 </head>
@@ -49,15 +53,18 @@ $resultind= mysqli_query($connect,$selectcustomer);
                 <span><i class="bi bi-table me-2"></i></span> <h3 id="orderlabel">Individual Users</h3> 
               </div>
               <div class="card-body">
-              <input id="search" type="search" placeholder="Search..">
-              <button type="button" class="btn btn-primary"> <i class="fas fa-search"></i>
-               </button>
+              <form  method="get">
+              <input name="search" id="search" type="search" placeholder="Search.." value="<?php if (isset($_GET['search'])){ echo $_GET['search']; }?>">
+              <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i>  </button>
+                </form>
+
                 
                 <div class="table-responsive">
                 
                   <table border="2" id="example" class="table table-striped data-table"  style="width: 100%"   >
                     <thead>
                       <tr>
+                        <th>Id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>City</th>
@@ -65,20 +72,54 @@ $resultind= mysqli_query($connect,$selectcustomer);
                         <th>Email</th>
                         <th>Action</th>
                       </tr>
+                      <tbody>
+                      <?php
+          if (isset($_GET['search'])){
+
+            $filter=$_GET['search'];
+            $filterselect="SELECT * FROM users_customer WHERE CONCAT (id,firstname,lastname,city,phonenumber,email) LIKE '%$filter%'  ";
+            $resu=mysqli_query($connect,$filterselect);
+            
+            if (mysqli_num_rows($resu)>0){
+          
+              foreach($resu as $items){ ?>
+              <td><?php echo $items['id']; ?> </td>
+              <td><?php echo $items['firstname']; ?> </td>
+              <td><?php echo $items['lastname']; ?></td>
+              <td> <?php echo $items['city']; ?></td>
+              <td><?php echo $items['phonenumber']; ?></td>
+              <td><?php echo $items['email']; ?></td>
+            
+          <?php 
+          
+              }
+          
+             
+            }
+            else{
+              echo "<p>Data Not Found !</p>";
+          
+            }
+           
+          } 
+          ?>
+
+                      </tbody>
                      <?php
                      while ($rows=mysqli_fetch_assoc($resultind)){?>
 
                     </thead>
                     <tbody>
                       <tr>
+                        <td><?php echo $rows['id'];?></td>
                         <td><?php echo $rows['firstname'];?> </td>
                         <td><?php echo $rows['lastname'];?> </td>
                         <td><?php echo $rows['city'];?> </td>
                         <td><?php echo $rows['phonenumber'];?> </td>
                         <td><?php echo $rows['email'];?> </td>
-                        <td><a href=""  class="btn btn-warning btn-sm ">View</a>
-                        <a href="" class="btn btn-primary btn-sm ">Edit</a> 
-                        <a href="" class="btn btn-danger btn-sm ">Remove</a> </td>
+                        <td><a href="viewind.php?id=<?=$rows['id'];?>"  class="btn btn-warning btn-sm ">View</a>
+                        <a href="viewind.php?id=<?=$rows['id'];?>" class="btn btn-primary btn-sm ">Edit</a> 
+                        <a href="delind.php?id=<?=$rows['id'];?>" class="btn btn-danger btn-sm ">Remove</a> </td>
 
                       </tr>
                       </tbody>
@@ -90,6 +131,7 @@ $resultind= mysqli_query($connect,$selectcustomer);
                      
                     <tfoot>
                       <tr>
+                        <th>Id</th>
                         <th>First Name</th>
                         <th>Last Number</th>
                         <th>City</th>

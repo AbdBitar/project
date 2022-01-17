@@ -209,7 +209,7 @@ $company1 = mysqli_fetch_row($res2);
              <tr>
                <td><?= $company1[1] ?></td>
                <td><?= $company1[2] ?></td>
-               <td><?= $company11[3] ?></td>
+               <td><?= $company1[3] ?></td>
                <td><?= $company1[4] ?></td>
                <td><?= $company1[5] ?></td>
              
