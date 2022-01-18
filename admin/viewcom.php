@@ -15,18 +15,6 @@ $company1= "SELECT * FROM users_company WHERE id ='$id' " ;
 $res2= mysqli_query($connect,$company1);
 
 $company1 = mysqli_fetch_row($res2);
-//update
-
-if(count($_POST)>0){
-  mysqli_query($connect,"UPDATE users_company set commercialregistrationnumber='".$_POST['crm']."',name='".$_POST['name']."',city='".$_POST['city']."',phonenumber='".$_POST['phone']."',email='".$_POST['email']."',password='".$_POST['password']."' WHERE id='".$_POST['id']."'  ");
-
-  echo "<p>UPDATED Succufully!</p>";
-  
-  
-}
-
-$re=mysqli_query($connect,"SELECT * FROM users_company WHERE id='".$_GET['id']."' ");
-  $rows= mysqli_fetch_assoc($re);
 
 ?>
 
@@ -46,7 +34,7 @@ $re=mysqli_query($connect,"SELECT * FROM users_company WHERE id='".$_GET['id']."
     <title>Company Profile</title>
     <style>
         #add{
-            margin-top: 20px;
+            margin-top: 30px;
             font-weight: bold;
         
         }
@@ -54,7 +42,6 @@ $re=mysqli_query($connect,"SELECT * FROM users_company WHERE id='".$_GET['id']."
             text-align: center;
             color: green;
             font-weight: bold;
-            margin-top: 70px;
         }
         .card-header{
           margin-top: 70px;
@@ -71,9 +58,19 @@ $re=mysqli_query($connect,"SELECT * FROM users_company WHERE id='".$_GET['id']."
           <h3 id="add" class='text-center text-black'> Company Profile</h3>
         </div>
         <div class="cad-body">
+<?php if(count($_POST)>0){
+  mysqli_query($connect,"UPDATE users_company set commercialregistrationnumber='".$_POST['crm']."',name='".$_POST['name']."',city='".$_POST['city']."',phonenumber='".$_POST['phone']."',email='".$_POST['email']."',password='".$_POST['password']."' WHERE id='".$_POST['id']."'  ");
 
+  echo "<p>UPDATED Succufully!</p>";
+  
+  
+}
+
+
+?>
 
 <div style="width:600px; margin:70px auto">
+
 
 <form class=""  method="post">
 
@@ -108,7 +105,7 @@ $re=mysqli_query($connect,"SELECT * FROM users_company WHERE id='".$_GET['id']."
     
     <div class="form-group">
       <label>Password</label>
-      <input type="text" name="password" class="form-control" value="<?= $company1[6]; ?>">
+      <input type="password" name="password" class="form-control" value="<?= $company1[6]; ?>">
     </div> <br> 
 
     <div class="form-group">

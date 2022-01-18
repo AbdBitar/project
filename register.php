@@ -18,8 +18,6 @@ if (isset($_POST["sign-individual"])){
     $x6=@$_POST["name6"];
     $x13=@$_POST["name13"];
 
-    $y1=md5($x6);
-    // $y2=md5(md5($x13));
 
     if ($x13===$x6){
         
@@ -42,7 +40,6 @@ if (isset($_POST["sign-company"])){
     $x12=@$_POST["name12"];
     $x13=@$_POST["name13"];
     
-    $y2=md5($x12);
 
     if ($x13===$x12){
 

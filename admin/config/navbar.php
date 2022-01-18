@@ -102,7 +102,7 @@ $admins=mysqli_fetch_assoc($resultadd);
               <a  class="nav-link dropdown-toggle ms-2"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                 <i class="bi bi-person-fill"></i> <?=$_SESSION['username1']; ?> </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="adminpro.php?id=<?=$admins['id'];?>"><i class="fas fa-user-edit"></i> View Profile</a></li>
+                <li><a class="dropdown-item" href="adminpro.php"><i class="fas fa-user-edit"></i> View Profile</a></li>
                 <li data-bs-toggle="modal" data-bs-target="#exampleModal"><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"> </i> Logout</a></li>
               </ul>
             </li>

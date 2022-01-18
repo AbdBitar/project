@@ -39,13 +39,12 @@ include ('./config/navbar.php')
         <div class="cad-body">
         <?php
 if (isset($_POST["addUser"])){
-    $u1=@$_POST["username"];
-    $u2=@$_POST["email"];
-    $u3=@$_POST["password"];
-  
+    $u1=$_POST["username"];
+    $u2=$_POST["email"];
+    $u3=$_POST["password"];
 
-    $y1=md5($u3);
-    // $y2=md5(md5($x13));   
+
+     
     $add="INSERT INTO admin (username,email, password) VALUES ('$u1','$u2','$u3') " ;
     $user=mysqli_query($connect,$add);
     if ($user){

@@ -457,7 +457,7 @@ option{
                                <input id="add" type="text" name="order3" placeholder="House number,Apartment, suite, unit etc. and street name" required>
                                <span id="reqTxtadd" class="reqError"></span> <br> <br>
                                 <label class="fieldlabels">PostCode/ZIP: *</label> 
-                                <input id="zip" type="text" name="order4" required >
+                                <input id="zip" type="text" name="order4" placeholder="ZIP" required >
                                 <span id="reqTxtzip" class="reqError"></span> <br> <br>
                           </div> 
                                  <input onmousedown="return checkReqFields()" type="button" name="next" class="next action-button" value="Next">
@@ -472,12 +472,12 @@ option{
                                     <h2 class="steps">Step 2 - 5</h2>
                                 </div>
                             </div> 
-                            <label class="fieldlabels">Company: *</label> 
+                            <label class="fieldlabels">Company Delivery: *</label> 
                              <select  name="order5" id="company" required >
                               <option value="">Select a Company ...</option>
-                              <option value="jo" >JO Petrol</option>
-                              <option value="manaseer" >Manaseer</option>
-                              <option value="total" >TotalEnergies</option> 
+                              <option value="Jo Petrol" >JO Petrol</option>
+                              <option value="Manaseer" >Manaseer</option>
+                              <option value="Total Energies" >TotalEnergies</option> 
                               </select>  
 
                             <label class="fieldlabels">Date received  order: *</label> 
@@ -492,9 +492,16 @@ option{
                               <option value="500L" >500L</option>
                               <option  value="700L">700L</option>
                               <option value="900L">900L</option> 
-                              <option value="1300L">1300L</option> 
-                              <option value="2000L">2000L</option> 
-                              <option value="3000L">3000L</option> 
+                              <option value="1500L">1500L</option> 
+                              <option value="2000L">2000L</option>
+                              <option value="2500L">2500L</option>  
+                              <option value="3000L">3000L</option>
+                              <option value="3500L">3500L</option> 
+                              <option value="4000L">4000L</option> 
+                              <option value="4500L">4500L</option> 
+                              <option value="5000L">5000L</option> 
+                              <option value="10000L">10000L</option> 
+ 
                         </select> 
                         </div> 
                         <input onclick="setProperties()"  type="button" name="next" class="next action-button" value="Next"> 
@@ -510,7 +517,7 @@ option{
                                     <h2 class="steps">Step 3 - 5</h2>
                                 </div>
                             </div> 
-                            <label class="fieldlabels">Liters (JD):</label>
+                            <label class="fieldlabels">Liters (QTY):</label>
                              <input id="literCount" type="text" name="" disabled > 
                              <label class="fieldlabels">Shipping fess (JD):</label>
                               <input id="fee" type="text" name="" disabled>
@@ -658,7 +665,7 @@ return false;
 
 const companies = 
 {
-          'jo' : {
+          'Jo Petrol' : {
 
           '500L': {
             'fee': 7.5,
@@ -669,80 +676,152 @@ const companies =
             'subtotal': 441,
             },
           '900L': {
-            'fee': 13.5,
-            'subtotal': 567,
+            'fee': 22.5,
+            'subtotal': 576,
             },
-          '1300L': {
-            'fee': 19.5,
-            'subtotal': 819,
+          '1500L': {
+            'fee': 22.5,
+            'subtotal': 965,
           },
           '2000L': {
             'fee': 30,
             'subtotal': 1260,
           },
+          '2500L': {
+            'fee': 37.5,
+            'subtotal': 1611,
+          },
           '3000L': {
             'fee': 45,
             'subtotal': 1890,
+          },
+          '3500L': {
+            'fee': 52.5,
+            'subtotal': 2205,
+          },
+          '4000L': {
+            'fee': 60,
+            'subtotal': 2520,
+          },
+          '4500L': {
+            'fee': 67.5,
+            'subtotal': 2835,
+          },
+          '5000L': {
+            'fee': 75,
+            'subtotal': 3150,
+          },
+          '10000L': {
+            'fee': 150,
+            'subtotal': 6300,
           },
 
    
     },
 
-                'manaseer' : {
+                'Manaseer' : {
 
-            '500L': {
-                'fee': 0,
-                'subtotal': 300,
+         '500L': {
+            'fee': 7.5,
+            'subtotal': 266.5,
             },
-            '700L': {
-                'fee': 0,
-                'subtotal': 441,
+          '700L': {
+            'fee': 10.5,
+            'subtotal': 423.5,
             },
-            '900L': {
-                'fee': 0,
-                'subtotal': 567,
+          '900L': {
+            'fee': 22.5,
+            'subtotal': 553.5,
             },
-            '1300L': {
-                'fee': 0,
-                'subtotal': 819,
-            },
-            '2000L': {
-                'fee': 0,
-                'subtotal': 1260,
-            },
-            '3000L': {
-                'fee': 0,
-                'subtotal': 1890,
-            },
+          '1500L': {
+            'fee': 22.5,
+            'subtotal': 907.5,
+          },
+          '2000L': {
+            'fee': 30,
+            'subtotal': 1210,
+          },
+          '2500L': {
+            'fee': 37.5,
+            'subtotal': 1512.5,
+          },
+          '3000L': {
+            'fee': 45,
+            'subtotal': 17795,
+          },
+          '3500L': {
+            'fee': 52.5,
+            'subtotal': 2117.5,
+          },
+          '4000L': {
+            'fee': 60,
+            'subtotal': 2420,
+          },
+          '4500L': {
+            'fee': 67.5,
+            'subtotal': 2722.5,
+          },
+          '5000L': {
+            'fee': 75,
+            'subtotal': 3025,
+          },
+          '10000': {
+            'fee': 150,
+            'subtotal': 6050,
+          },
 
+                },
+                
+            'Total Energies' : {
 
+         '500L': {
+            'fee': 0,
+            'subtotal': 307.5,
             },
-            'total' : {
-
-            '500L': {
-                'fee': 7.5,
-                'subtotal': 315,
+          '700L': {
+            'fee': 0,
+            'subtotal': 430.5,
             },
-            '700L': {
-                'fee': 10.5,
-                'subtotal': 441,
+          '900L': {
+            'fee': 0,
+            'subtotal': 553.5,
             },
-            '900L': {
-                'fee': 13.5,
-                'subtotal': 567,
-            },
-            '1300L': {
-                'fee': 19.5,
-                'subtotal': 819,
-            },
-            '2000L': {
-                'fee': 30,
-                'subtotal': 1260,
-            },
-            '3000L': {
-                'fee': 45,
-                'subtotal': 1890,
-            },
+          '1500L': {
+            'fee': 0,
+            'subtotal': 922.5,
+          },
+          '2000L': {
+            'fee': 0,
+            'subtotal': 1230,
+          },
+          '2500L': {
+            'fee': 0,
+            'subtotal': 1537.5,
+          },
+          '3000L': {
+            'fee': 0,
+            'subtotal': 1845,
+          },
+          '3500L': {
+            'fee': 0,
+            'subtotal': 2152.5,
+          },
+          '4000L': {
+            'fee': 0,
+            'subtotal': 2460,
+          },
+          '4500L': {
+            'fee': 0,
+            'subtotal': 2767.5,
+          },
+          '5000L': {
+            'fee': 0,
+            'subtotal': 3075,
+          },
+          '10000L': {
+            'fee': 0,
+            'subtotal': 6150,
+          },
 
 
             },

@@ -19,16 +19,7 @@ $user = mysqli_fetch_row($res1);
 
 //update
 
-if(count($_POST)>0){
-  mysqli_query($connect,"UPDATE users_customer set firstname='".$_POST['fn']."',lastname='".$_POST['ln']."',city='".$_POST['city']."',phonenumber='".$_POST['phone']."',email='".$_POST['email']."',password='".$_POST['password']."' WHERE id='".$_POST['id']."'  ");
 
-  echo "<p>UPDATED Succufully!</p>";
-  
-  
-}
-
-$re=mysqli_query($connect,"SELECT * FROM users_customer WHERE id='".$_GET['id']."' ");
-  $rows= mysqli_fetch_assoc($re);
 
 ?>
 
@@ -56,7 +47,6 @@ $re=mysqli_query($connect,"SELECT * FROM users_customer WHERE id='".$_GET['id'].
             text-align: center;
             color: green;
             font-weight: bold;
-            margin-top: 20px;
         }
         
     </style>
@@ -70,8 +60,15 @@ $re=mysqli_query($connect,"SELECT * FROM users_customer WHERE id='".$_GET['id'].
           <h3 id="add" class='text-center text-black'>Individual Profile</h3>
         </div>
         <div class="cad-body">
+     <?php   if(count($_POST)>0){
+  mysqli_query($connect,"UPDATE users_customer set firstname='".$_POST['fn']."',lastname='".$_POST['ln']."',city='".$_POST['city']."',phonenumber='".$_POST['phone']."',email='".$_POST['email']."',password='".$_POST['password']."' WHERE id='".$_POST['id']."'  ");
 
+  echo "<p>UPDATED Succufully!</p>";
+  
+  
+}
 
+?>
 <div style="width:600px; margin:70px auto">
 
 <form class=""  method="post">
@@ -107,7 +104,7 @@ $re=mysqli_query($connect,"SELECT * FROM users_customer WHERE id='".$_GET['id'].
     
     <div class="form-group">
       <label>Password</label>
-      <input type="text" name="password" class="form-control" value="<?= $user[6]; ?>">
+      <input type="password" name="password" class="form-control" value="<?= $user[6]; ?>">
     </div> <br> 
 
     <div class="form-group">

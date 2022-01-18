@@ -1,6 +1,5 @@
 <?php
 session_start();
-$page_title="Password Change Update";
 include ('./config/database.php');
 include ('./config/navbar.php');
 

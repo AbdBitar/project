@@ -7,29 +7,21 @@ include ('./config/database.php');
 session_start();
 
                           
-$id = $_GET['id'];
+$email = $_SESSION["email_dash"];
 
 
 
-$admin= "SELECT * FROM admin WHERE id ='$id' " ;
+
+$admin= "SELECT * FROM admin WHERE email ='$email' " ;
 
 $resad= mysqli_query($connect,$admin);
 
 $admin = mysqli_fetch_row($resad);
 
 
-//update
 
-if(count($_POST)>0){
-  mysqli_query($connect,"UPDATE admin set username='".$_POST['username']."',email='".$_POST['email']."',password='".$_POST['password']."' WHERE id='".$_POST['id']."'  ");
 
-  echo "<p>UPDATED Succufully!</p>";
-  
-  
-}
 
-$re=mysqli_query($connect,"SELECT * FROM admin WHERE id='".$_GET['id']."' ");
-  $rows= mysqli_fetch_assoc($re);
 
 ?>
 
@@ -57,7 +49,6 @@ $re=mysqli_query($connect,"SELECT * FROM admin WHERE id='".$_GET['id']."' ");
             text-align: center;
             color: green;
             font-weight: bold;
-            margin-top: 50px;
         }
         
     </style>
@@ -72,7 +63,15 @@ $re=mysqli_query($connect,"SELECT * FROM admin WHERE id='".$_GET['id']."' ");
         </div>
         <div class="cad-body">
 
+<?php
+if(count($_POST)>0){
+  mysqli_query($connect,"UPDATE admin set username='".$_POST['username']."',email='".$_POST['email']."',password='".$_POST['password']."' WHERE id='".$_POST['id']."'  ");
 
+  echo "<p>UPDATED Succufully!</p>";
+  
+  
+}
+?>
 <div style="width:600px; margin:70px auto">
 
 <form  method="post">

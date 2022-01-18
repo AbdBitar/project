@@ -3,6 +3,8 @@
 session_start();
 $connect = mysqli_connect("localhost","root","", "yalla_diesel");
 
+$selectorder = "SELECT * FROM order_yalla";
+$result = mysqli_query($connect, $selectorder);
 
 $selectadmin= "SELECT * FROM company_admin";
 
@@ -29,16 +31,31 @@ $admins=mysqli_fetch_assoc($resultadd);
     #dsh{
      padding-left: 15px;
     }
-    #ord{
-     padding-left: 15px;
-    }
-    #tab{
-     padding-left: 15px;
-    }
-    /* #exampleModalLabel{
-        margin-left: 160px;
-    } */
     
+    .table-responsive {
+      margin-top: 10px;
+    }
+
+    #orderlabel {
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    #search {
+      margin-left: 1200px;
+      height: 35px;
+      width: 200px;
+    }
+
+    p {
+      margin-left: 800px;
+    }
+    h6 {
+      margin-left: 300px;
+    }
+    #exampleModalLabel{
+      color: white;
+    }
 .modal-content{
     background-color:black
 }
@@ -64,11 +81,11 @@ $admins=mysqli_fetch_assoc($resultadd);
 
           <a
           class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" id="dsh"
-          href="order.php" ><i class="bi bi-table"></i> Orders </a>
+          href="indexcom.php" ><i class="bi bi-table"></i> Orders </a>
          
           <a
           class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" id="ord"
-          href="addadmin.php" ><i class="fas fa-user-plus mr-2"></i> Add order</a>
+          href="addorder.php" ><i class="fas fa-shipping-fast"></i> Make order</a>
          
 
        
@@ -78,7 +95,7 @@ $admins=mysqli_fetch_assoc($resultadd);
               <a  class="nav-link dropdown-toggle ms-2"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                 <i class="bi bi-person-fill"></i> <?=$_SESSION['username1']; ?> </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="adminpro.php?id=<?=$admins['id'];?>"><i class="fas fa-user-edit"></i> View Profile</a></li>
+                <li><a class="dropdown-item" href="viewprocom.php"><i class="fas fa-user-edit"></i> View Profile</a></li>
                 <li data-bs-toggle="modal" data-bs-target="#exampleModal"><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"> </i> Logout</a></li>
               </ul>
             </li>
@@ -106,6 +123,126 @@ $admins=mysqli_fetch_assoc($resultadd);
         </div>
 
     <!-- End top navigation bar -->
+    <div class="row">
+    <div class="col-md-12 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <span><i class="bi bi-table me-2"></i></span>
+          <h3 id="orderlabel">Order Table</h3>
+        </div>
+        <div class="card-body">
+
+          <form method="get">
+          <input name="search" id="search" type="search" placeholder="Search.." value="<?php if (isset($_GET['search'])){ echo $_GET['search']; }?>">
+          <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i></button>
+          
+          </form>
+
+          <div class="table-responsive">
+
+            <table border="2" id="example" class="table table-striped data-table" style="width: 100%">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Email</th>
+                  <th>Phone Number</th>
+                  <th>Address</th>
+                  <th>Post Code</th>
+                  <th>Company</th>
+                  <th>Date Recived</th>
+                  <th>Liters Qty</th>
+                  <th>Payment Method</th>
+                  <th>Action</th>
+                </tr>
+                <tbody>
+                      <?php
+                      if (isset($_GET['search'])){
+
+                        $filter=$_GET['search'];
+                        $filterselect="SELECT * FROM order_yalla WHERE CONCAT (id,email,phonenumber,streetadd,postcode,company,daterecived,liters,payment) LIKE '%$filter%'  ";
+                        $resu=mysqli_query($connect,$filterselect);
+                        
+                        if (mysqli_num_rows($resu)>0){
+                      
+                          foreach($resu as $items){ ?>
+                          <td><?php echo $items['id']; ?> </td>
+                          <td><?php echo $items['email']; ?> </td>
+                          <td><?php echo $items['phonenumber']; ?></td>
+                          <td><?php echo $items['streetadd']; ?></td>
+                          <td><?php echo $items['postcode']; ?></td>
+                          <td><?php echo $items['company']; ?></td>
+                          <td> <?php echo $items['daterecived']; ?></td>
+                          <td> <?php echo $items['liters']; ?></td>
+                          <td> <?php echo $items['payment']; ?></td>
+                      <?php 
+                      
+                          }
+                      
+                        
+                        }
+                        else{
+                          echo "<p>Data Not Found !</p>";
+                      
+                        }
+                      
+                      } 
+                      ?>
+
+                      </tbody>
+                <?php
+                while ($rows = mysqli_fetch_assoc($result)) { ?>
+                  
+              </thead>
+              <tbody>
+                <tr>
+                  <td><?php echo $rows['id']; ?> </td>
+                  <td><?php echo $rows['email']; ?> </td>
+                  <td><?php echo $rows['phonenumber']; ?> </td>
+                  <td><?php echo $rows['streetadd']; ?> </td>
+                  <td><?php echo $rows['postcode']; ?> </td>
+                  <td><?php echo $rows['company']; ?> </td>
+                  <td><?php echo $rows['daterecived']; ?> </td>
+                  <td><?php echo $rows['liters']; ?> </td>
+                  <td><?php echo $rows['payment']; ?> </td>
+                  <?php if($rows['confirm']): ?>
+                   <td><a href="delivered.php?id=<?=$rows['id'];?>" class="btn btn-success btn-sm "><i class="fas fa-check-circle "></i> Delivered</a> </td>
+                   <?php else: ?>
+                   <td><a href="delivery.php?id=<?=$rows['id'];?>" class="btn btn-success btn-sm "><i class="fas fa-truck"></i> Delivering</a> </td>
+                  <?php endif; ?>
+                  <td><a class="btn btn-danger btn-sm " href="delorder.php?id=<?= $rows['id']; ?>"><i class="fas fa-trash"></i> Remove</a></td>
+
+                </tr>
+              </tbody>
+            <?php
+                }
+            ?>
+
+
+
+            <tfoot>
+              <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>PostCode</th>
+                <th>Company</th>
+                <th>Date Recived</th>
+                <th>Liters Qty</th>
+                <th>Payment Method</th>
+                <th>Action</th>
+
+              </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
     <script src="./js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
   <script src="./js/jquery-3.5.1.js"></script>

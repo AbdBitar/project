@@ -15,6 +15,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <title>Admin login</title>
+    <style>
+      p{
+        color: red;
+      }
+    </style>
 </head>
 <body>
 <section class="vh-100 gradient-custom">
@@ -49,7 +54,7 @@
                 $a1=$_POST["email_admin"];
                 $a2=$_POST["pass_admin"];
 
-                                    
+                
 
                 $admin="SELECT * FROM   admin  WHERE email= '$a1' and password='$a2' " ;
 
@@ -62,6 +67,7 @@
 
                     $_SESSION['email_dash'] = $a1;
                     $_SESSION['username1'] = $admin2[1];
+                   
                     header ('Location:index.php' );
                        }
                        else {
