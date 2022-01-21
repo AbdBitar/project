@@ -7,24 +7,32 @@ include ('./config/database.php');
 
 
 <?php
+session_start();
 
 // from indiviual 
 if (isset($_POST["sign-individual"])){
-    $x1=@$_POST["name1"];
-    $x2=@$_POST["name2"];
-    $x3=@$_POST["name3"];
-    $x4=@$_POST["name4"];
-    $x5=@$_POST["name5"];
-    $x6=@$_POST["name6"];
-    $x13=@$_POST["name13"];
-
+    $x1=$_POST["name1"];
+    $x2=$_POST["name2"];
+    $x3=$_POST["name3"];
+    $x4=$_POST["name4"];
+    $x5=$_POST["name5"];
+    $x6=$_POST["name6"];
+    $x13=$_POST["name13"];
+    
 
     if ($x13===$x6){
         
     $insertind="INSERT INTO users_customer (firstname,lastname, city ,phonenumber, email, password ) VALUES ('$x1','$x2','$x3','$x4','$x5','$x6') " ;
     $individual=mysqli_query($connect,$insertind);
+
+ 
+
     if ($individual){
         header('Location:order.php');
+         $_SESSION['name'] = $x1;
+         $_SESSION['email'] = $x5;
+
+
     }
     
 }
@@ -32,21 +40,28 @@ if (isset($_POST["sign-individual"])){
 }
 // from company
 if (isset($_POST["sign-company"])){
-    $x7=@$_POST["name7"];
-    $x8=@$_POST["name8"];
-    $x9=@$_POST["name9"];
-    $x10=@$_POST["name10"];
-    $x11=@$_POST["name11"];
-    $x12=@$_POST["name12"];
-    $x13=@$_POST["name13"];
+    $x7=$_POST["name7"];
+    $x8=$_POST["name8"];
+    $x9=$_POST["name9"];
+    $x10=$_POST["name10"];
+    $x11=$_POST["name11"];
+    $x12=$_POST["name12"];
+    $x13=$_POST["name13"];
     
 
     if ($x13===$x12){
 
     $insertcom="INSERT INTO users_company (commercialregistrationnumber,name, city ,phonenumber, email, password ) VALUES ('$x7','$x8','$x9','$x10','$x11','$x12') " ;
     $company=mysqli_query($connect,$insertcom);
-    if ($company){
+
+
+    if ($company>0){
+                 $_SESSION['name'] = $x8;
+                  $_SESSION['email'] = $x11;
+
+
         header('Location:order.php');
+
     }
 
 

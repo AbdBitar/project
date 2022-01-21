@@ -2,6 +2,10 @@
 <?php
 include ('./config/navbar.php');
 include ('./config/database.php');
+// if (isset($_SESSION['$email'])){
+//     header ('Location :login.php');
+//     exit;
+//   }
 ?>
 
 
@@ -82,12 +86,12 @@ include ('./config/database.php');
     </div>
 </div>
     
-<script type="text/javascript">
+<!-- <script type="text/javascript">
         window.history.forward();
         function noBack() {
             window.history.forward();
         }
-    </script>
+    </script> -->
     <!-- <script type="text/javascript">
         function preventBack() {
             window.history.forward(); 

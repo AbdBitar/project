@@ -1,5 +1,9 @@
 <?php
 // include ('./config/database.php');
+// if (isset($_SESSION['$email'])){
+//   header ('Location :order.php');
+//   exit;
+// }
 ?>
 
 <?php
@@ -379,7 +383,7 @@ option{
             <li><a href="#services" data-after="Service"> <i class="fas fa-cogs"></i> Services</a></li>
             <li><a href="#prices" data-after="About"> <i class="fas fa-hand-holding-usd"></i> prices</a></li>
             <li><a href="#contact" data-after="Contact"> <i class="fas fa-id-card-alt"></i> Contact Us</a></li>
-            <li ><a href="#"> <i class="fas fa-user-circle" ></i> <?= $_SESSION['name']; ?> <i class="fas fa-caret-down"></i></a>
+            <li ><a href="#"> <i class="fas fa-user-circle" ></i><?= $_SESSION['name']; ?> <i class="fas fa-caret-down"></i></a>
           
             <div class="dropdown_menu">
               <ul>

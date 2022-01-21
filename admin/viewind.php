@@ -17,7 +17,6 @@ $res1= mysqli_query($connect,$user);
 
 $user = mysqli_fetch_row($res1);
 
-//update
 
 
 
