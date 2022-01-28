@@ -79,6 +79,7 @@ include ('./config/database.php');
                       <a class="forgot text-muted" href="password.php">Forgot password?</a>
                       <input type="submit" name="signin" value="Sign in " >                     
                        <a href="register.php"><input type="button" name="" value="Sign up" ></a>
+                       <a href="admin/login.php"><input type="button" name="" value="Admin" ></a>
    
                 </form>
             </div>
@@ -108,7 +109,5 @@ include ('./config/database.php');
 
 
 <?php
-
 include('./config/footer.php');
-
 ?>

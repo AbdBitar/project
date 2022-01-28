@@ -147,7 +147,7 @@ if (isset($_POST["sign-company"])){
                         <option value="Ma'an">Ma'an</option>
                         <option value="Aqaba">Aqaba</option>
                     </select>
-                      <label id="label" ">Phone Number</label> <br>
+                      <label id="label" >Phone Number</label> <br>
                       <input id="phone1" type="text" name="name10" placeholder="Number" required > <br> <br>
                       <label id="label" >Email</label>
                       <input type="email" name="name11" placeholder=" yalla@example.com" required>
@@ -249,5 +249,4 @@ confirm_password1.onkeyup = validatePassword;
 
 <?php
 include ('./config/footer.php');
-
 ?>

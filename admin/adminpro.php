@@ -91,10 +91,10 @@ if(count($_POST)>0){
 
     <div class="form-group">
       <label >Email</label>
-      <input type="text" name="email"  class="form-control" value="<?= $admin[2]; ?>">
+      <input type="email" name="email"  class="form-control" value="<?= $admin[2]; ?>">
     </div><div class="form-group">
       <label>Password</label>
-      <input type="text" name="password" class="form-control" value="<?= $admin[3]; ?>">
+      <input type="password" name="password" class="form-control" value="<?= $admin[3]; ?>">
     </div> <br>
     
 

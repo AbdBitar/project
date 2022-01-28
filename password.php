@@ -39,7 +39,7 @@ include ('./config/database.php');
 
                             if ($row1>0){
 
-                                header ("Location:password-reset.php?email=$e" );
+                                header ("Location:reset_password.php?email=$e" );
                             }
                             $compare2= "SELECT * FROM users_company WHERE email ='$e' ";
                             $res2= mysqli_query($connect,$compare2);
@@ -48,7 +48,7 @@ include ('./config/database.php');
                         
                             if ($row2>0){
                             
-                                header ("Location:password-reset.php?email=$e");
+                                header ("Location:reset_password.php?email=$e");
                             }
 
                             else

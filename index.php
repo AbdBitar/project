@@ -1,6 +1,5 @@
 
 <?php
-
 include ('./config/navbar.php');
 ?>
 
@@ -111,13 +110,6 @@ img {vertical-align: middle;}
 </div>
 
 </section>
-
-
-
-
-
-
-
 
 <!-- End offers -->
   <!-- Service Section -->
@@ -255,8 +247,5 @@ function showSlides() {
 </body>
 </html>
   <?php
-
   include ('./config/footer.php');
-  
-  
   ?>
