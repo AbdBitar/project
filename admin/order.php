@@ -122,7 +122,11 @@ $result= mysqli_query($connect,$selectorder);
                         <?php if($rows['confirm']): ?>
                          <td><a href="confirmed.php?id=<?=$rows['id'];?>" class="btn btn-success btn-sm "><i class="fas fa-check-circle "></i>Confirmed</a> </td>
                          <?php else: ?>
+<<<<<<< HEAD
                           <td><a href="confirm.php?id=<?=$rows['id'];?>" class="btn btn-success  "><i class="far fa-check-circle"></i>Confirm</a> </td>
+=======
+                          <td><a href="confirm.php?id=<?=$rows['id'];?>" class="btn btn-success btn-sm "><i class="far fa-check-circle"></i> Confirm</a> </td>
+>>>>>>> c8b2d3505d61434d63279cc0d9fd5f5643f6aa14
                           <?php endif; ?>
                         <td><a class="btn btn-danger btn-sm " href="delor.php?id=<?=$rows['id'];?>"><i class="fas fa-trash"></i> Remove</a></td>
 
